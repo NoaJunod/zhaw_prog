@@ -1,4 +1,4 @@
-network = [[0 for _ in range(10)] for _ in range(10)]
+diagram = [[0 for _ in range(10)] for _ in range(10)]
 vessels = [
         [[0, 9], [5, 9]],
         [[8, 0], [0, 8]],
@@ -31,8 +31,15 @@ def examine():
         elif start_point[1] > end_point[1]:
             y_dir = -1
         for i in range(distance):
-            network[y][x] += 1
+            diagram[y][x] += 1
             x += x_dir
             y += y_dir
-    for row in network:
-        print(row)
+    overlap_count = 0
+    print("Diagram from your Blood Vessel Data:")
+    for i in diagram:
+        print("".join(str(x) for x in i))
+        for j in i:
+            if j > 1:
+                overlap_count += 1
+    print(f"There are {overlap_count} overlaps in this data.")
+
